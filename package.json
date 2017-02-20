@@ -2,7 +2,9 @@
   "name": "alexacast",
   "version": "0.0.0",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "start": "node index"
+  },
   "dependencies": {
     "alexa-sdk": "^1.0.7",
     "body-parser": "^1.16.1",

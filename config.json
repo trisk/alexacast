@@ -1,3 +1,8 @@
 {
-  "APP_ID": "amzn1.ask.skill.5127c1e1-d5e5-4d67-ab7b-6bb2a5569b8c"
+  "APP_ID": "amzn1.ask.skill.5127c1e1-d5e5-4d67-ab7b-6bb2a5569b8c",
+  "port": 3000,
+  "certs": {
+    "privateKey": "certs/private-key.pem",
+    "certificate": "certs/certificate.pem"
+  }
 }

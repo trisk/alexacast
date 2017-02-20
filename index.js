@@ -3,14 +3,19 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var Alexa = require('alexa-sdk');
+var https = require('https');
+var fs = require('fs');
+var app = express();
+var config = require('nconf').argv()
+    .env()
+    .file({file: 'config.json'});
 
+// Skill handlers
 var handlers = require('./app').handlers;
 
-var server = express();
-server.use(bodyParser.json());
+app.use(bodyParser.json());
 
-// Create POST route
-server.post('/', function (req, res) {
+app.post('/', function (req, res) {
     const context = {
         fail: function () {
             res.sendStatus(500);
@@ -24,15 +29,16 @@ server.post('/', function (req, res) {
     alexa.registerHandlers(handlers);
     alexa.execute();
 });
-server.get('/', function (req, res) {
+app.get('/', function (req, res) {
     res.json({
-        "text": "hello world"
+        "text": "hello secure world"
     })
-
-
 });
 
-server.listen(3000, function () {
-    console.log('TV Cast app listening on port 3000!')
-})
-;
+
+https.createServer({
+    key: fs.readFileSync(config.get('certs:privateKey')),
+    cert: fs.readFileSync(config.get('certs:certificate'))
+}, app).listen(config.get('port'), function () {
+    console.log('TV Cast app listening on port ' + config.get('port'));
+});
