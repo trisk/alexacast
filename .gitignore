@@ -1,4 +1,5 @@
 
 /certs/
-/.idea/*
+/.idea/workspace.xml
+/.idea/atlassian-ide-plugin.xml
 /alexacast.iml
