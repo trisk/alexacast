@@ -1,3 +1,4 @@
 
 /certs/
-/.idea/
+/.idea/*
+/alexacast.iml
