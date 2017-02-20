@@ -16,7 +16,7 @@ var handlers = require('./app').handlers;
 app.use(bodyParser.json());
 
 app.post('/', function (req, res) {
-    const context = {
+    var context = {
         fail: function () {
             res.sendStatus(500);
         },
