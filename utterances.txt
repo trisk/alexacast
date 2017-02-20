@@ -1,0 +1,2 @@
+PlayTrailer play trailer for {Movie}
+PlayTrailer show me trailer for {Movie}
