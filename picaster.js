@@ -17,6 +17,15 @@ function playYouTubeStream(streamName) {
             }
         });
 }
+
+function playTwitchStream(streamName) {
+    return needleGetQ(picastUrl + '/tw-stream/' + streamName)
+        .then(function (response) {
+            if (response.statusCode !== 200) {
+                throw 'Unable to play stream';
+            }
+        });
+}
 function stopStream() {
     return needleGetQ(picastUrl + '/stop')
         .then(function (response) {
@@ -28,3 +37,4 @@ function stopStream() {
 
 module.exports.stop = stopStream;
 module.exports.playYouTubeStream = playYouTubeStream;
+module.exports.playTwitchStream = playTwitchStream;

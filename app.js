@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var youtube = require('./youtube');
+var twitch = require('./twitch');
 var picaster = require('./picaster');
 
 
@@ -28,9 +29,14 @@ var handlers = {
 
             var game = this.event.request.intent.slots.Game.value;
             // Get stream from twitch
+            twitch.search(game)
+                .then(function(streamName){
+                    console.log('Sending stream: ' + streamName);
+                    return picaster.playTwitchStream(streamName);
+                });
             // Send it off to the streamer
-            console.log('Playing stream ' + this.event.request.intent.slots.Game.value)
-            this.emit(':tell', 'Playing on TV', 'Playing stream for ' + Game + ' on TV');
+            console.log('Playing stream for ' + this.event.request.intent.slots.Game.value)
+            this.emit(':tell', 'Playing on TV', 'Playing stream for ' + game + ' on TV');
         } else {
             this.emit(':tell', 'Please provide a Video game name');
         }
