@@ -6,9 +6,7 @@ var Alexa = require('alexa-sdk');
 var https = require('https');
 var fs = require('fs');
 var app = express();
-var config = require('nconf').argv()
-    .env()
-    .file({file: 'config.json'});
+var config = require('./config');
 
 // Skill handlers
 var handlers = require('./app').handlers;

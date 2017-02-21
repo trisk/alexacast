@@ -1,2 +1,3 @@
-PlayTrailer play trailer for {Movie}
-PlayTrailer show me trailer for {Movie}
+PlayYoutube play {Movie} from youtube
+PlayYoutube show me {Movie} from youtube
+PlayTwitch show me a stream for {Game}

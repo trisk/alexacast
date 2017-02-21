@@ -1,1 +1,0 @@
-{  "intents": [    {      "intent": "PlayTrailer",      "slots": [        {          "name": "Movie",          "type": "AMAZON.Movie"        }      ]    },    {      "intent": "AMAZON.HelpIntent"    },    {      "intent": "AMAZON.StopIntent"    },    {      "intent": "AMAZON.CancelIntent"    }  ]}
