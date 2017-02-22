@@ -1,8 +1,5 @@
 /certs/
-/.idea/workspace.xml
-/.idea/atlassian-ide-plugin.xml
+/.idea/
+/node_modules
 /alexacast.iml
 /api-keys.json
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/vcs.xml
