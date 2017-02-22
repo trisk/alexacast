@@ -23,11 +23,11 @@ var handlers = {
 
     'MovementAction': function () {
 
-        console.log(this.event.request.intent.slots)
         if (_.has(this.event.request, 'intent.slots.ActionName.value')) {
 
             var movement = this.event.request.intent.slots.ActionName.value;
             // Move
+            console.log('Executing movement: ' + movement);
             kodi.executeMovement(movement)();
             console.log('Moving ' + this.event.request.intent.slots.ActionName.value);
             this.emit(':tell', 'Done');

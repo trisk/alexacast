@@ -1,6 +1,5 @@
 var kodi_rpc = require('node-kodi');
 var config = require('./config');
-var fuzzy = require('fuzzy');
 var _ = require('lodash');
 
 var kodi = new kodi_rpc({
