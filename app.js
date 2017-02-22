@@ -2,51 +2,59 @@ var _ = require('lodash');
 var youtube = require('./youtube');
 var twitch = require('./twitch');
 var picaster = require('./picaster');
+var kodi = require('./kodi');
 
 
 var handlers = {
 
-    'PlayYoutube': function () {
+    'ExecuteAddon': function () {
 
-        if (_.has(this.event.request, 'intent.slots.Movie.value')) {
+        if (_.has(this.event.request, 'intent.slots.Addon.value')) {
 
-            var movieName = this.event.request.intent.slots.Movie.value;
-            youtube.searchYouTube(movieName)
-                .then(function (videoId) {
-                    return picaster.playYouTubeStream(videoId);
-                });
-            console.log('Playing ' + this.event.request.intent.slots.Movie.value);
-            this.emit(':tell', 'Playing on TV', 'Playing trailer for ' + movieName + ' on TV');
+            var addonName = this.event.request.intent.slots.Addon.value;
+            kodi.playAddon(addonName);
+            console.log('Playing ' + this.event.request.intent.slots.Addon.value);
+            this.emit(':tell', 'Playing on TV', 'Playing trailer for ' + addonName + ' on TV');
         } else {
-            this.emit(':tell', 'Please provide a movie name');
+            this.emit(':tell', 'I did not quite get that, please provide an addon name');
         }
 
     },
 
-    'PlayTwitch': function () {
+    'MovementAction': function () {
 
-        if (_.has(this.event.request, 'intent.slots.Game.value')) {
+        console.log(this.event.request.intent.slots)
+        if (_.has(this.event.request, 'intent.slots.ActionName.value')) {
 
-            var game = this.event.request.intent.slots.Game.value;
-            // Get stream from twitch
-            twitch.search(game)
-                .then(function(streamName){
-                    console.log('Sending stream: ' + streamName);
-                    return picaster.playTwitchStream(streamName);
-                });
-            // Send it off to the streamer
-            console.log('Playing stream for ' + this.event.request.intent.slots.Game.value)
-            this.emit(':tell', 'Playing on TV', 'Playing stream for ' + game + ' on TV');
+            var movement = this.event.request.intent.slots.ActionName.value;
+            // Move
+            kodi.executeMovement(movement)();
+            console.log('Moving ' + this.event.request.intent.slots.ActionName.value);
+            this.emit(':tell', 'Done');
         } else {
-            this.emit(':tell', 'Please provide a Video game name');
+            this.emit(':tell', 'Please try again');
+        }
+
+    },
+
+    'SearchAction': function () {
+
+        if (_.has(this.event.request, 'intent.slots.Movie.value')) {
+
+            var movieName = this.event.request.intent.slots.Movie.value;
+            // Move
+            kodi.sendText(movieName);
+            console.log('Moving ' + this.event.request.intent.slots.Movie.value);
+            this.emit(':tell', 'Done');
+        } else {
+            this.emit(':tell', 'Sorry I did not catch that, try again');
         }
 
     },
 
     'AMAZON.StopIntent': function () {
-        // send off a request to stop
-        picaster.stop();
-        this.emit(':tell', 'Stream stopped');
+        kodi.home();
+        this.emit(':tell', 'I stopped playing');
     }
 
 

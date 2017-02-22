@@ -1,3 +1,4 @@
-PlayYoutube play {Movie} from youtube
-PlayYoutube show me {Movie} from youtube
-PlayTwitch show me a stream for {Game}
+ExecuteAddon start {youtube|Addon}
+MovementAction  move {ActionName}
+MovementAction  {ActionName}
+SearchAction search {Movie}
