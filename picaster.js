@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var needle = require('needle');
 var Q = require('q');
-var config = require('./config')
+var config = require('./config');
 
 
 var picastUrl = "http://" + config.get('picast:host') + ":" + config.get("port");

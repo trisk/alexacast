@@ -2,3 +2,4 @@ ExecuteAddon start {youtube|Addon}
 MovementAction  move {ActionName}
 MovementAction  {ActionName}
 SearchAction search {Movie}
+SearchAction search {Movie} on {youtube|Addon}
