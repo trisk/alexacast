@@ -1,0 +1,10 @@
+{
+  "YOUTUBE_API_KEY": "YOUR_YOUTUBE_API_KEY",
+  "ngrok": {
+    "proto": "tls",
+    "addr": 3000,
+    "subdomain": "YOUR_SUBDOMAIN",
+    "authtoken": "YOUR_NGROK_AUTHTOKEN",
+    "region": "us"
+  }
+}
