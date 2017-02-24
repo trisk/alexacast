@@ -23,7 +23,6 @@ function playVideo(videoId){
             console.log('connected, launching app ...');
             client.launch(Youtube, function (err, player) {
                 console.log('Loading player....');
-                // player.load('vT6mRL0AA78');
                 player.load(videoId);
             });
         });
@@ -35,5 +34,10 @@ function playVideo(videoId){
 
     }
 }
+function stopVideo(){
+    if (player)
+    player.stop();
+}
 
 module.exports.play = playVideo;
+module.exports.stop = stopVideo;
