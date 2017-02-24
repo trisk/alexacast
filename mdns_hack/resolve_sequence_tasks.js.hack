@@ -1,6 +1,7 @@
-var dns_sd = require('mdns/lib/dns_sd')
+var dns_sd = require('./dns_sd')
     , util = require('util')
-    , MDNSService = require('mdns/lib/mdns_service').MDNSService;
+    , MDNSService = require('./mdns_service').MDNSService
+    ;
 
 exports.DNSServiceResolve = function DNSServiceResolve(options) {
     options = options || {};

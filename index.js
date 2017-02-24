@@ -47,7 +47,15 @@ https.createServer({
     var ngrokConfig = config.get('ngrok');
     if (ngrokConfig) {
         console.log('Setting up ngrok');
-        ngrok.connect(ngrokConfig, _.noop);
+        ngrok.connect(ngrokConfig, function(err, path){
+            console.log(arguments)
+            if (err){
+                console.log('Unable to setup ngrok', err);
+                process.exit(1);
+            } else {
+                console.log('TV Cast app available ' + path);
+            }
+        });
     }
 
 });

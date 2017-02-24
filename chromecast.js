@@ -2,8 +2,6 @@ var Client = require('castv2-client').Client;
 var Youtube = require('youtube-castv2-client').Youtube;
 var mdns = require('mdns');
 
-mdns.rst = require('./mdns_hack/resolve_sequence_tasks');
-
 var browser = mdns.createBrowser(mdns.tcp('googlecast'));
 
 var player;
