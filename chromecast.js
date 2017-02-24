@@ -54,5 +54,26 @@ function stopVideo() {
     }
 }
 
+function pauseVideo() {
+    if (discoveredPlayer) {
+        discoveredPlayer.pause();
+    }
+}
+
+function resumeVideo() {
+    if (discoveredPlayer) {
+        discoveredPlayer.resume();
+    }
+}
+
+function seek() {
+    if (discoveredPlayer) {
+        discoveredPlayer.seek(0);
+    }
+}
+
 module.exports.play = playVideo;
 module.exports.stop = stopVideo;
+module.exports.pause = pauseVideo;
+module.exports.resume = resumeVideo;
+module.exports.seek = seek;

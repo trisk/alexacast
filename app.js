@@ -43,6 +43,21 @@ var handlers = {
     'AMAZON.StopIntent': function () {
         chromecast.stop();
         this.emit(':tell', 'I stopped playing');
+    },
+
+    'AMAZON.PauseIntent': function () {
+        chromecast.pause();
+        this.emit(':tell', 'I stopped playing');
+    },
+
+    'AMAZON.ResumeIntent': function () {
+        chromecast.resume();
+        this.emit(':tell', 'I stopped playing');
+    },
+
+    'AMAZON.StartOverIntent': function () {
+        chromecast.seek(0);
+        this.emit(':tell', 'I stopped playing');
     }
 
 
