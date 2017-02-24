@@ -62,7 +62,7 @@ function pauseVideo() {
 
 function resumeVideo() {
     if (discoveredPlayer) {
-        discoveredPlayer.resume();
+        discoveredPlayer.play();
     }
 }
 
