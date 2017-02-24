@@ -23,7 +23,11 @@ function playVideo(videoId){
             console.log('connected, launching app ...');
             client.launch(Youtube, function (err, player) {
                 console.log('Loading player....');
-                player.load(videoId);
+                player.load(videoId, function(err){
+                    if(err){
+                        console.log('Failed to play due to: ' + JSON.stringify(err));
+                    }
+                });
             });
         });
 
