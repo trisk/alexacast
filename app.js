@@ -11,8 +11,10 @@ var handlers = {
         if (_.has(this.event.request, 'intent.slots.Movie.value')) {
 
             var movieName = this.event.request.intent.slots.Movie.value;
-            var videoId = youtube.searchYouTubeLive(movieName);
-            chromecast.play(videoId);
+            youtube.searchYouTubeLive(movieName)
+                .then(function (videoId) {
+                    chromecast.play(videoId);
+                });
             console.log('Playing ' + movieName);
             this.emit(':tell', 'Playing on TV', 'Playing YouTube stream for ' + movieName + ' on TV');
         } else {
@@ -26,7 +28,10 @@ var handlers = {
         if (_.has(this.event.request, 'intent.slots.Movie.value')) {
 
             var movieName = this.event.request.intent.slots.Movie.value;
-            youtube.search(movieName);
+            youtube.searchYouTube(movieName)
+                .then(function (videoId) {
+                    chromecast.play(videoId);
+                });
             console.log('Playing ' + movieName);
             this.emit(':tell', 'Playing on TV', 'Playing YouTube stream for ' + movieName + ' on TV');
         } else {

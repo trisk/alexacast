@@ -4,43 +4,54 @@ var mdns = require('mdns');
 
 var browser = mdns.createBrowser(mdns.tcp('googlecast'));
 
-var player;
+var discoveredPlayer;
 
-function playVideo(videoId){
+function playVideo(videoId) {
 
-    browser.on('serviceUp', function (service) {
-        console.log('found device "%s" at %s:%d', service.name, service.addresses[0], service.port);
-        ondeviceup(service.addresses[0]);
-        browser.stop();
-    });
+    if (!discoveredPlayer) {
 
-    browser.start();
+        browser.on('serviceUp', function (service) {
+            console.log('found device "%s" at %s:%d', service.name, service.addresses[0], service.port);
+            ondeviceup(service.addresses[0]);
+            browser.stop();
+        });
 
-    function ondeviceup(host) {
+        browser.start();
 
-        var client = new Client();
-        client.connect(host, function () {
-            console.log('connected, launching app ...');
-            client.launch(Youtube, function (err, player) {
-                console.log('Loading player....');
-                player.load(videoId, function(err){
-                    if(err){
-                        console.log('Failed to play due to: ' + JSON.stringify(err));
-                    }
+        function ondeviceup(host) {
+
+            var client = new Client();
+            client.connect(host, function () {
+                console.log('connected, launching app ...');
+                client.launch(Youtube, function (err, player) {
+                    console.log('Loading player....');
+                    discoveredPlayer = player;
+                    player.load(videoId, function (err) {
+                        if (err) {
+                            console.log('Failed to play due to: ' + JSON.stringify(err));
+                        }
+                    });
                 });
             });
-        });
 
-        client.on('error', function (err) {
-            console.log('Error: %s', err.message);
-            client.close();
-        });
+            client.on('error', function (err) {
+                console.log('Error: %s', err.message);
+                client.close();
+            });
 
-    }
+        }
+    } else {
+        discoveredPlayer.load(videoId, function (err) {
+            if (err) {
+                console.log('Failed to play due to: ' + JSON.stringify(err));
+            }
+        });    }
+
 }
-function stopVideo(){
-    if (player)
-    player.stop();
+function stopVideo() {
+    if (discoveredPlayer) {
+        discoveredPlayer.stop();
+    }
 }
 
 module.exports.play = playVideo;
