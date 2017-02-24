@@ -4,5 +4,5 @@
   "certs": {
     "privateKey": "certs/private-key.pem",
     "certificate": "certs/certificate.pem"
-  },
+  }
 }
