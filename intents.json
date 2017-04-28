@@ -1,1 +1,34 @@
-{  "intents": [    {      "intent": "PlayLiveStream",      "slots": [        {          "name": "Movie",          "type": "AMAZON.Movie"        }      ]    },    {      "intent": "PlayVideo",      "slots": [        {          "name": "Movie",          "type": "AMAZON.Movie"        }      ]    },    {      "intent": "AMAZON.StopIntent"    },    {      "intent": "AMAZON.PauseIntent"    },    {      "intent": "AMAZON.ResumeIntent"    },    {      "intent": "AMAZON.StartOverIntent"    }  ]}
+{
+  "intents": [
+    {
+      "intent": "PlayLiveStream",
+      "slots": [
+        {
+          "name": "Movie",
+          "type": "AMAZON.Movie"
+        }
+      ]
+    },
+    {
+      "intent": "PlayVideo",
+      "slots": [
+        {
+          "name": "Movie",
+          "type": "AMAZON.Movie"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.PauseIntent"
+    },
+    {
+      "intent": "AMAZON.ResumeIntent"
+    },
+    {
+      "intent": "AMAZON.StartOverIntent"
+    }
+  ]
+}
